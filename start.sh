@@ -1,8 +1,12 @@
+# add git config name
+git config --global user.email "hey_flora@126.com"
+
 
 # add packages and conda
 apt-get update
 apt-get install vim
-pip install --upgrade tensorflow
+export PYTHONSTARTUP='/home/context-embed/context-skipgram/PYTHONSTARTUP.py'
+#pip install --upgrade tensorflow
 
 #install conda
 # file='/home/Anaconda3-5.0.1-Linux-x86_64.sh'
@@ -23,7 +27,7 @@ pip install --upgrade tensorflow
 
 # run jupyter
 cd /home/context-embed/
-cp /home/jupyter_notebook_config.py /root/.jupyter/
+cp /home/context-embed/context-skipgram/jupyter_notebook_config.py /root/.jupyter/
 for pid in $(ps -def | grep jupyter | awk '{print $2}'); do kill -9 $pid; done
 jupyter notebook --ip '*'  --port=8888 --allow-root &
 
