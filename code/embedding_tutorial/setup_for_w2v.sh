@@ -9,6 +9,23 @@ file_eval_path="/home/context-embed/context-skipgram/eval/"
 file=$filepath$data
 file_eval=$file_eval_path$eval_data
 
+
+if [ ! -d "$filepath" ]
+then
+	mkdir $filepath
+fi
+
+
+if [ ! -d "$file_eval_path" ]
+then
+	mkdir $file_eval_path
+fi
+ 
+
+
+
+
+
 if [ ! -f "$file" ]
 then
         cd ${filepath}
@@ -25,6 +42,8 @@ then
 	rm $zipfile source-archive.zip
 fi
 
+
+#set up flags
 cd /home/context-embed/context-skipgram/code/embedding_tutorial/
 TF_CFLAGS=( $(python3 -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_compile_flags()))') )
 TF_LFLAGS=( $(python3 -c 'import tensorflow as tf; print(" ".join(tf.sysconfig.get_link_flags()))') )
