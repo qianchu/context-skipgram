@@ -2,27 +2,13 @@
 git config --global user.email "hey_flora@126.com"
 
 
-# add packages and conda
+# add packages and tensorflow eager in python startup
 apt-get update
 apt-get install vim
 export PYTHONSTARTUP='/home/context-embed/context-skipgram/PYTHONSTARTUP.py'
-#pip install --upgrade tensorflow
 
-#install conda
-# file='/home/Anaconda3-5.0.1-Linux-x86_64.sh'
-# if echo $PATH | grep -q anaconda3
-# then
-# 	echo 'conda installed'
-# else
-#     echo "$0: File '${file}' not found."
-# 	cd /home/
-# 	curl -O https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
-# 	sha256sum Anaconda3-5.0.1-Linux-x86_64.sh
-# 	bash ${file}
-	
-# 	urce ~/.bashrc
 
-# fi
+
 
 
 # run jupyter
