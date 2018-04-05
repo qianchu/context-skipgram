@@ -1,10 +1,13 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 from __future__ import absolute_import, division, print_function
+
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]="2"
 
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
@@ -14,13 +17,15 @@ import tensorflow.contrib.eager as tfe
 tfe.executing_eagerly()        # => True
 tf.executing_eagerly()
 
+
 x = [[2.]]
 m = tf.matmul(x, x)
 print("hello, {}".format(m))
 
+# Runs the op.
 
 
-# In[8]:
+# In[6]:
 
 
 is_gpu_available = tfe.num_gpus() > 0
@@ -35,7 +40,7 @@ else:
   print("GPU not available.")
 
 
-# In[9]:
+# In[7]:
 
 
 if is_gpu_available:
@@ -49,7 +54,7 @@ if is_gpu_available:
   get_ipython().run_line_magic('time', 'tf.matmul(gpu_tensor, gpu_tensor)')
 
 
-# In[10]:
+# In[8]:
 
 
 cpu_tensor = tf.random_normal([SIZE, SIZE])

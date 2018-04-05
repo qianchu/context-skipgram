@@ -27,6 +27,9 @@ The key ops used are:
 * neg_train custom op that efficiently calculates and applies the gradient using
   true SGD.
 """
+
+
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -37,9 +40,12 @@ import threading
 import time
 
 from six.moves import xrange  # pylint: disable=redefined-builtin
-
+import datetime
 import numpy as np
 import tensorflow as tf
+
+os.environ["CUDA_VISIBLE_DEVICES"]="2"
+
 
 word2vec = tf.load_op_library(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'word2vec_ops.so'))
 
@@ -60,7 +66,7 @@ flags.DEFINE_integer(
 flags.DEFINE_float("learning_rate", 0.025, "Initial learning rate.")
 flags.DEFINE_integer("num_neg_samples", 25,
                      "Negative samples per training example.")
-flags.DEFINE_integer("batch_size", 500,
+flags.DEFINE_integer("batch_size", 2000,
                      "Numbers of training examples each step processes "
                      "(no minibatching).")
 flags.DEFINE_integer("concurrent_steps", 12,
@@ -419,9 +425,9 @@ def main(_):
     sys.exit(1)
   opts = Options()
   with tf.Graph().as_default(), tf.Session() as session:
-    with tf.device("/cpu:0"):
-      model = Word2Vec(opts, session)
-      model.read_analogies() # Read analogy questions
+    #with tf.device("/gpu:2"):
+    model = Word2Vec(opts, session)
+    model.read_analogies() # Read analogy questions
     for _ in xrange(opts.epochs_to_train):
       model.train()  # Process one epoch
       model.eval()  # Eval analogies.
