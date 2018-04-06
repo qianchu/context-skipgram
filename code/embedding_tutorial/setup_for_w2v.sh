@@ -8,7 +8,7 @@ filepath="/home/context-embed/context-skipgram/data/"
 file_eval_path="/home/context-embed/context-skipgram/eval/"
 file=$filepath$data
 file_eval=$file_eval_path$eval_data
-
+training_out_path="/home/context-embed/context-skipgram/training_out/"
 
 if [ ! -d "$filepath" ]
 then
@@ -20,7 +20,11 @@ if [ ! -d "$file_eval_path" ]
 then
 	mkdir $file_eval_path
 fi
- 
+
+if [ ! -d "$training_out_path" ]
+then
+	mkdir $training_out_path
+fi
 
 
 
